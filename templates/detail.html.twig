@@ -1,0 +1,54 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Detail zamestnanca - {{ employee.getName() }} {{ employee.getSurname() }}
+{% endblock %}
+
+{% block headscripts %}
+    <link rel="stylesheet" href="../fonts/Roboto-Regular.ttf">
+    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="../css/detail.css">
+{% endblock %}
+
+{% block content %}
+    <header>
+        <h1>Detail zamestnanca</h1>
+    </header>
+
+    <main id="content">
+        <article id="profile-card">
+
+            <section id="profile-photo">
+                <img src="../img/profile-picture-placeholder.png" alt="Profilová fotografia" />
+            </section>
+
+
+            <section id="profile-info">
+                <h2>{{ employee.getName() }} {{ employee.getSurname() }}</h2>
+
+                <section id="roles">
+                    <h3>Funkcie</h3>
+                    <ul>
+                        {% for function in employee.getFunctions() %}
+                            <li>{{ function }}</li>
+                        {% endfor %}
+                    </ul>
+                </section>
+
+                <section id="description">
+                    <h3>Popis</h3>
+
+                    <p>{{ employee.getNote() }}</p>
+                </section>
+
+                <section id="contact-details">
+                    <h3>Kontakt</h3>
+                    <address>
+                        <a href="mailto:{{ employee.getEmail() }}">{{ employee.getEmail() }}</a><br>
+                        <a href="tel:+420{{ employee.getPhoneNumber() }}">{{ employee.getPhoneNumber() }}</a><br>
+                    </address>
+                </section>
+            </section>
+        </article>
+    </main>
+{% endblock %}

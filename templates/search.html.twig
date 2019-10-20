@@ -1,0 +1,22 @@
+{% extends "index.html.twig" %}
+
+{% block table %}
+    <section id="employee-table">
+        <span class="header">Meno, priezvisko</span>
+        <span class="header">Funkcia</span>
+        <span class="header">E-mail</span>
+        <span class="header"></span>
+        {% for employee in employees %}
+            <span class="employee-name">
+                    <a href="/detail/{{ employee.getId() }}">{{ employee.getName() }}, {{ employee.getSurname() }}</a>
+            </span>
+            <span>{{ employee.getFunctions()[0]}}</span>
+            <span class="employee-email">
+                    <a href="mailto:{{ employee.getEmail() }}">{{ employee.getEmail() }}</a>
+            </span>
+            <span>
+                <input type="image" class="employee-buttons" src="../icons/edit-solid.svg" alt="Edit employee" onclick="location.href='/edit/{{ employee.getId() }}'"/>
+            </span>
+        {% endfor %}
+    </section>
+{% endblock %}
