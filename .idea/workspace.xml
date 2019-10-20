@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b018fa07-0f0d-410c-9126-d719d95491ff" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/composer.phar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Database.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Router.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/Employee.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/detail.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/layout.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/search.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/detail.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/detail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/general.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/general.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/overview.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/search.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fonts/LICENSE.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fonts/LICENSE.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/overview.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/search.html" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution>
+      <phar pharPath="$PROJECT_DIR$/composer.phar" interpreterId="48b1c7e7-fc0b-4ec3-8322-a67faaa3e9f5" />
+    </execution>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpServers">
+    <servers>
+      <server host="localhost" id="8f9d65b0-03d2-4be9-96ae-85313bd925a0" name="localhost" port="8000" />
+    </servers>
+  </component>
+  <component name="PhpWebServerValidation" path_to_validation_script="$PROJECT_DIR$" selected_validation_type="LOCAL" web_path_to_validation_script="http://127.0.0.1/" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.3">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1RvFx1KnTgT0IjSOgDGluCcA0BP" />
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/BI-TWA-SYM" />
+    <property name="settings.editor.selected.configurable" value="settings.php.debug.step.filters" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Server" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" document_root="$PROJECT_DIR$" port="8000">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" document_root="$PROJECT_DIR$" port="8080" router_script="$PROJECT_DIR$/src/Router.php" use_router_script="true">
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b018fa07-0f0d-410c-9126-d719d95491ff" name="Default Changelist" comment="" />
+      <created>1570539906257</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1570539906257</updated>
+      <workItem from="1570539913711" duration="3333000" />
+      <workItem from="1570988729709" duration="6191000" />
+      <workItem from="1571144778605" duration="851000" />
+      <workItem from="1571483766672" duration="12037000" />
+      <workItem from="1571595853080" duration="4018000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
