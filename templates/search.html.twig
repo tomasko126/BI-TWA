@@ -8,14 +8,14 @@
         <span class="header"></span>
         {% for employee in employees %}
             <span class="employee-name">
-                    <a href="/detail/{{ employee.getId() }}">{{ employee.getName() }}, {{ employee.getSurname() }}</a>
+                    <a href="{{ path('detailaction', { 'id': employee.getId() }) }}">{{ employee.getName() }}, {{ employee.getSurname() }}</a>
             </span>
             <span>{{ employee.getFunctions()[0]}}</span>
             <span class="employee-email">
                     <a href="mailto:{{ employee.getEmail() }}">{{ employee.getEmail() }}</a>
             </span>
             <span>
-                <input type="image" class="employee-buttons" src="../icons/edit-solid.svg" alt="Edit employee" onclick="location.href='/edit/{{ employee.getId() }}'"/>
+                <input type="image" class="employee-buttons" src="../icons/edit-solid.svg" alt="Edit employee" onclick="location.href='{{ path('editaction', { 'id': employee.getId() }) }}'"/>
             </span>
         {% endfor %}
     </section>

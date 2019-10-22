@@ -16,7 +16,7 @@
     </header>
 
     <main id="content">
-        <form id="searchform" action="/search">
+        <form id="searchform" action="{{ path('listaction') }}">
             <input type="search" id="search" name="name" placeholder="Zadajte meno">
             <button type="submit">Hľadať</button>
         </form>

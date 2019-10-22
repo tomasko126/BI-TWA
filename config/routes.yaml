@@ -1,0 +1,15 @@
+index:
+    path: /
+    controller: App\Controller\EmployeeController::index
+
+listaction:
+    path: /list
+    controller: App\Controller\EmployeeController::listAction
+
+detailaction:
+    path: /detail/{id}
+    controller: App\Controller\EmployeeController::detailAction
+
+editaction:
+    path: /edit/{id}
+    controller: App\Controller\EmployeeController::editAction

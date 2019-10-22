@@ -35,13 +35,11 @@ class Database
     }
 
     public function searchEmployees(string $searchQuery) {
-        $searchKeys = null;
-
-        parse_str($searchQuery, $searchKeys);
+        $searchKeys = explode(' ', $searchQuery);
 
         $employees = $this->getEmployees();
 
-        if (empty($searchKeys['name'])) {
+        if (empty($searchKeys)) {
             return $employees;
         }
 
