@@ -1,0 +1,75 @@
+html {
+    background-color: whitesmoke;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 80%;
+    margin: 0 auto;
+    border-bottom: 1px solid #c3c2c2;
+}
+
+h1, h2, h3 {
+    margin: 15px 0;
+}
+
+h1 {
+    font-size: 1.75em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.25em;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:active {
+    color: #004bbd;
+}
+
+a:focus {
+    color: #004bbd;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #609;
+}
+
+#content {
+    width: 80%;
+    margin: 0 auto;
+}
+
+#searchform {
+    margin: 15px auto;
+    display: flex;
+    justify-content: space-between;
+    max-width: 500px;
+    align-items: baseline;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #c3c2c2;
+}
+
+#search {
+    width: 300px;
+}
+
+::selection {
+    background-color: #d0c9c9;
+}

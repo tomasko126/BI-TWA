@@ -1,0 +1,27 @@
+form button {
+    -moz-appearance: button;
+    -webkit-appearance: button;
+}
+
+#employee-table {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 1fr;
+    border: 1px solid #c3c2c2;
+    margin: 0 auto;
+    background-color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+#employee-table span {
+    padding: 5px;
+}
+
+#employee-table > .header {
+    font-weight: 600;
+    border-bottom: 1px solid #c3c2c2;
+}
+
+.employee-buttons {
+    width: 20px;
+}
