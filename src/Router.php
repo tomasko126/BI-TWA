@@ -4,7 +4,6 @@ namespace App;
 
 class Router
 {
-    protected $database;
     protected $twig;
 
     /**
@@ -13,7 +12,6 @@ class Router
      */
     public function __construct($twig)
     {
-        $this->database = new Database();
         $this->twig = $twig;
     }
 

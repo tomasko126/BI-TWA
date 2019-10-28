@@ -58,16 +58,7 @@ a:visited {
 #searchform {
     margin: 15px auto;
     display: flex;
-    justify-content: space-between;
-    max-width: 500px;
-    align-items: baseline;
     background-color: white;
-    padding: 10px;
-    border: 1px solid #c3c2c2;
-}
-
-#search {
-    width: 300px;
 }
 
 ::selection {

@@ -5,23 +5,19 @@
 {% endblock %}
 
 {% block headscripts %}
-    <link rel="stylesheet" href="../fonts/Roboto-Regular.ttf">
     <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/search.css">
 {% endblock %}
 
 {% block content %}
-    <header>
-        <h1>Prehľad zamestnancov</h1>
-    </header>
-
     <main id="content">
-        <form id="searchform" action="{{ path('listaction') }}">
-            <input type="search" id="search" name="name" placeholder="Zadajte meno">
-            <button type="submit">Hľadať</button>
+
+        <form id="searchform" class="uk-search uk-search-default uk-width-large" action="{{ path('listaction') }}">
+            <input type="search" class="uk-search-input" name="name" placeholder="Zadajte meno zamestnanca">
+            <button type="submit" class="uk-search-icon-flip" uk-search-icon></button>
         </form>
 
-        {% block table %}
+        {% block results %}
         {% endblock %}
     </main>
 

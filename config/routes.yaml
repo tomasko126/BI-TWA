@@ -13,3 +13,7 @@ detailaction:
 editaction:
     path: /edit/{id}
     controller: App\Controller\EmployeeController::editAction
+
+accountsaction:
+    path: /accounts/{id}
+    controller: App\Controller\EmployeeController::accountsAction

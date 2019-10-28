@@ -1,22 +1,51 @@
 {% extends "index.html.twig" %}
 
-{% block table %}
-    <section id="employee-table">
-        <span class="header">Meno, priezvisko</span>
-        <span class="header">Funkcia</span>
-        <span class="header">E-mail</span>
-        <span class="header"></span>
+{% block results %}
+    <div id="results" class="uk-grid-medium uk-grid uk-flex uk-flex-around" uk-grid>
         {% for employee in employees %}
-            <span class="employee-name">
-                    <a href="{{ path('detailaction', { 'id': employee.getId() }) }}">{{ employee.getName() }}, {{ employee.getSurname() }}</a>
-            </span>
-            <span>{{ employee.getFunctions()[0]}}</span>
-            <span class="employee-email">
-                    <a href="mailto:{{ employee.getEmail() }}">{{ employee.getEmail() }}</a>
-            </span>
-            <span>
-                <input type="image" class="employee-buttons" src="../icons/edit-solid.svg" alt="Edit employee" onclick="location.href='{{ path('editaction', { 'id': employee.getId() }) }}'"/>
-            </span>
+            <article class="uk-card uk-card-default uk-card-small uk-width-medium">
+
+                <section class="uk-card-header">
+                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-border-circle" width="40" height="40" src="../img/profile-picture-placeholder.png">
+                        </div>
+                        <div class="uk-width-expand">
+                            <h3 class="uk-card-title uk-margin-remove-top">
+                                <a href="{{ path('detailaction', { 'id': employee.getId() }) }}">{{ employee.getName() }}</a></h3>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="uk-card-body">
+                    <p class="employee-room">
+                        Miestnosť: {{ employee.getRoom() }}
+                    </p>
+                    <p class="employee-roles uk-margin-remove-bottom">
+                        Funkcie:
+                        <ul class="uk-margin-remove">
+                            {% for role in roles[employee.getId()] %}
+                            <li>{{ role.getTitle() }}</li>
+                            {% endfor %}
+                        </ul>
+                    </p>
+                    <p class="employee-email">
+                        E-mail:
+                        <a href="mailto:{{ employee.getEmail() }}">{{ employee.getEmail() }}</a>
+                    </p>
+                </section>
+
+                <section class="uk-card-footer">
+                    <a href="{{ path('editaction', { 'id': employee.getId() }) }}" class="uk-button uk-button-text">Upraviť</a>
+                </section>
+            </article>
         {% endfor %}
-    </section>
+
+        {% if employees is empty %}
+            <div class="uk-alert-warning" uk-alert>
+                <p>Neboli nájdené žiadne osoby</p>
+            </div>
+        {% endif %}
+
+    </div>
 {% endblock %}

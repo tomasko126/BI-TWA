@@ -1,6 +1,7 @@
 .DS_Store
 vendor/
 twig_cache/
+.idea/
 
 ###> symfony/framework-bundle ###
 /.env.local

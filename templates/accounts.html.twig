@@ -1,0 +1,43 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Moje účty
+{% endblock %}
+
+{% block headscripts %}
+    <link rel="stylesheet" href="../css/general.css">
+{% endblock %}
+
+{% block content %}
+    <main id="content">
+
+        <h2>Moje účty</h2>
+        <div class="uk-overflow-auto">
+            <table class="uk-table uk-table-small uk-table-divider">
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Heslo</th>
+                    <th>Platnosť</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for account in accounts %}
+                    <tr>
+                        <td>{{ account.getUsername() }}</td>
+                        <td>{{ account.getPassword() }}</td>
+                        {% if account.getValidTo() is null %}
+                            <td>Platnosť nebola nastavená</td>
+                        {% else %}
+                            <td>{{ account.getValidTo() }}</td>
+                        {% endif %}
+                        <td>
+                            <button class="uk-button uk-button-default uk-button-small">Upraviť</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+{% endblock %}
