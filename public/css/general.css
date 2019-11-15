@@ -1,6 +1,5 @@
 html {
     background-color: whitesmoke;
-    font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -9,8 +8,6 @@ body {
 }
 
 header {
-    width: 80%;
-    margin: 0 auto;
     border-bottom: 1px solid #c3c2c2;
 }
 
@@ -50,13 +47,8 @@ a:visited {
     color: #609;
 }
 
-#content {
-    width: 80%;
-    margin: 0 auto;
-}
-
 #searchform {
-    margin: 15px auto;
+    margin: 0 auto;
     display: flex;
     background-color: white;
 }

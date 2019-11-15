@@ -2,32 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b018fa07-0f0d-410c-9126-d719d95491ff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Entity/Account.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Employee.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Role.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Migrations/Version20191026160711.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/AccountRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/EmployeeRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/RoleRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/accounts.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/AccountType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/EmployeeType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/account_edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/employee_create.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/employee_edit.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/employees.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/form.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/detail.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/detail.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/general.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/general.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/search.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/search.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/Roboto-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/search.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/list.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/EmployeeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EmployeeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Employee.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/detail.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/detail.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Employee.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Employee.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Role.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20191026160711.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/AccountRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/AccountRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/RoleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/RoleRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/accounts.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/detail.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employee.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account_create.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html.twig" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/search.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/search.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/search.html.twig" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +39,7 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
-      <phar pharPath="$PROJECT_DIR$/composer.phar" interpreterId="48b1c7e7-fc0b-4ec3-8322-a67faaa3e9f5" />
+      <phar pharPath="$PROJECT_DIR$/composer.phar" interpreterId="7fda3132-dbeb-4d37-85b6-ee08cb87e87c" />
     </execution>
   </component>
   <component name="DatabaseView">
@@ -74,13 +75,6 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
         <item name="account: table" type="3d80ac25:SqliteImplModel$Table" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="data" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-        <item name="role: table" type="3d80ac25:SqliteImplModel$Table" />
       </path>
     </expand>
     <select />
@@ -283,7 +277,11 @@
       <workItem from="1571744637057" duration="341000" />
       <workItem from="1571745935159" duration="4890000" />
       <workItem from="1572097719662" duration="6285000" />
-      <workItem from="1572185773696" duration="13376000" />
+      <workItem from="1572185773696" duration="13532000" />
+      <workItem from="1572628206310" duration="11180000" />
+      <workItem from="1573037569443" duration="14500000" />
+      <workItem from="1573565914271" duration="4566000" />
+      <workItem from="1573827435933" duration="10425000" />
     </task>
     <servers />
   </component>
@@ -302,5 +300,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/accounts.html.twig</url>
+          <line>24</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Controller/EmployeeController.php</url>
+          <line>39</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

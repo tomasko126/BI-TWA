@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AccountRepository")
@@ -18,23 +19,28 @@ class Account
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max="255")
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max="255")
      */
     private $password;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Assert\DateTime()
      */
     private $validTo;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Employee", inversedBy="accounts")
      */
-    private $employee_id;
+    private $employee;
 
     public function getId(): ?int
     {
@@ -77,14 +83,14 @@ class Account
         return $this;
     }
 
-    public function getEmployeeId(): ?int
+    public function getEmployee(): ?Employee
     {
-        return $this->employee_id;
+        return $this->employee;
     }
 
-    public function setEmployeeId(int $employee_id): self
+    public function setEmployee(Employee $employee): self
     {
-        $this->employee_id = $employee_id;
+        $this->employee = $employee;
 
         return $this;
     }

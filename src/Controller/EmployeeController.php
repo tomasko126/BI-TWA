@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Account;
 use App\Entity\Employee;
 use App\Entity\Role;
+use App\Form\AccountType;
+use App\Form\EmployeeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,37 +15,56 @@ use Symfony\Component\Routing\Annotation\Route;
 class EmployeeController extends AbstractController {
 
     /**
-     * @Route("/", name="index")
-     */
-    public function index() {
-        return $this->render( 'index.html.twig');
-    }
-
-    /**
-     * @Route("/list", name="listaction")
+     * @Route("/", name="employees")
      * @param Request $request
      * @return Response
      */
-    public function listAction(Request $request) {
+    public function employees(Request $request) {
         $employeeName = $request->query->get('name');
 
-        $employees = $this->getDoctrine()->getRepository(Employee::class)->findByName($employeeName);
-        $roles = [];
-
-        foreach ($employees as &$employee) {
-            /** @var Employee $employee */
-            $roles[$employee->getId()] = $this->getDoctrine()->getRepository(Role::class)->getRolesForEmployee($employee->getId());
+        if (empty($employeeName)) {
+            $employees = $this->getDoctrine()->getRepository(Employee::class)->findAll();
+        } else {
+            $employees = $this->getDoctrine()->getRepository(Employee::class)->findByName($employeeName);
         }
 
-        return $this->render( 'search.html.twig', ['employees' => $employees, 'roles' => $roles]);
+        return $this->render( 'employees.html.twig', ['employees' => $employees]);
     }
 
     /**
-     * @Route("/detail/{id}", name="detailaction")
+     * @Route("/employee/create", name="employeecreate")
+     * @param Request $request
+     * @return Response
+     */
+    public function employeeCreate(Request $request) {
+        $employee = new Employee();
+
+        $form = $this->createForm(EmployeeType::class, $employee);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($employee);
+            $em->flush();
+
+            $this->addFlash('success', 'Údaje boli uložené.');
+
+            return $this->redirectToRoute('employees');
+        }
+
+        return $this->render('employee_create.html.twig', [
+            'form' => $form->createView(),
+            'employee' => $employee
+        ]);
+    }
+
+    /**
+     * @Route("/employee/{id}", name="employee", requirements={"id":"\d+"})
      * @param int $id
      * @return Response
      */
-    public function detailAction(int $id) {
+    public function employee(int $id) {
         $employee = $this->getDoctrine()
             ->getRepository(Employee::class)
             ->find($id);
@@ -54,48 +75,135 @@ class EmployeeController extends AbstractController {
             );
         }
 
-        $roles = $this->getDoctrine()->getRepository(Role::class)->getRolesForEmployee($employee->getId());
-
-        return $this->render('detail.html.twig', ['employee' => $employee, 'roles' => $roles]);
+        return $this->render('employee.html.twig', ['employee' => $employee]);
     }
 
     /**
-     * @Route("/edit/{id}", name="editaction")
+     * @Route("/employee/edit/{id}", name="employeeedit", requirements={"id":"\d+"})
      * @param int $id
+     * @param Request $request
      * @return Response
      */
-    public function editAction(int $id) {
+    public function employeeEdit(int $id, Request $request) {
         $employee = $this->getDoctrine()
             ->getRepository(Employee::class)
             ->find($id);
 
         if (!$employee) {
             throw $this->createNotFoundException(
-                'No employee found for id '. $id
+                'No employee found for id ' . $id
             );
         }
 
-        return $this->render('edit.html.twig', ['employee' => $employee]);
+        $form = $this->createForm(EmployeeType::class, $employee);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($employee);
+            $em->flush();
+
+            $this->addFlash('success', 'Údaje boli uložené.');
+
+            return $this->redirectToRoute('employee', [
+                'id' => $employee->getId(),
+            ]);
+        }
+
+        return $this->render('employee_edit.html.twig', [
+            'employee' => $employee,
+            'form' => $form->createView()
+        ]);
     }
 
     /**
-     * @Route("/accounts/{id}", name="accountsaction")
-     * @param int $id
+     * @Route("/accounts", name="accounts", requirements={"id":"\d+"})
+     * @param Request $request
      * @return Response
      */
-    public function accountsAction(int $id) {
-        $employee = $this->getDoctrine()
-            ->getRepository(Employee::class)
-            ->find($id);
+    public function accounts(Request $request) {
+        $employeeId = $request->query->get('employee');
 
-        if (!$employee) {
+        if (empty($employeeId)) {
             throw $this->createNotFoundException(
-                'No employee found for id '. $id
+                'No employee id has been defined!'
             );
         }
 
-        $accounts = $this->getDoctrine()->getRepository(Account::class)->getAccountsForUser($id);
+        $employee = $this->getDoctrine()
+            ->getRepository(Employee::class)
+            ->find($employeeId);
 
-        return $this->render('accounts.html.twig', ['employee' => $employee, 'accounts' => $accounts]);
+        if (!$employee) {
+            throw $this->createNotFoundException(
+                'No employee found for id ' . $employeeId
+            );
+        }
+
+        return $this->render('accounts.html.twig', ['employee' => $employee]);
+    }
+
+    /**
+     * @Route("/accounts/create", name="accountcreate")
+     * @param Request $request
+     * @return Response
+     */
+    public function accountCreate(Request $request) {
+        $account = new Account();
+
+        $form = $this->createForm(AccountType::class, $account);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($account);
+            $em->flush();
+
+            $this->addFlash('success', 'Údaje boli uložené.');
+
+            return $this->redirectToRoute('employees');
+        }
+
+        return $this->render('account_create.html.twig', [
+            'account' => $account,
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/accounts/edit/{id}", name="accountedit", requirements={"id":"\d+"})
+     * @param int $id
+     * @param Request $request
+     * @return Response
+     */
+    public function accountEdit(int $id, Request $request) {
+        $account = $this->getDoctrine()->getRepository(Account::class)->find($id);
+
+        if (!$account) {
+            throw $this->createNotFoundException(
+                'No account found for id ' . $id
+            );
+        }
+
+        $form = $this->createForm(AccountType::class, $account);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($account);
+            $em->flush();
+
+            $this->addFlash('success', 'Údaje boli uložené.');
+
+            return $this->redirectToRoute('accounts', ['employee' => $id]);
+        }
+
+        return $this->render('account_edit.html.twig', [
+            'account' => $account,
+            'form' => $form->createView()
+        ]);
     }
 }

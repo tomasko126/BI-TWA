@@ -1,0 +1,34 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Vytvorenie účtu
+{% endblock %}
+
+{% block headscripts %}
+    <link rel="stylesheet" href="/css/general.css">
+{% endblock %}
+
+{% form_theme form 'form.html.twig' %}
+
+{% block content %}
+    <main id="content" class="uk-container uk-flex uk-flex-center">
+        <article id="newAccountForm" class="uk-card uk-card-default uk-card-small uk-width-large uk-margin-top">
+            <section class="uk-card-header uk-flex uk-flex-center">
+                <h3 class="uk-card-title uk-margin-remove-top">
+                    Vytvorenie účtu
+                </h3>
+            </section>
+            <section class="uk-card-body">
+                {{ form_start(form) }}
+                {{ form_row(form.username) }}
+                {{ form_row(form.password) }}
+                {{ form_row(form.validTo) }}
+                {{ form_row(form.employee) }}
+            </section>
+            <section class="uk-card-footer">
+                {{ form_row(form.save) }}
+                {{ form_end(form) }}
+            </section>
+        </article>
+    </main>
+{% endblock %}

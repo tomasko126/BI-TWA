@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EmployeeRepository")
@@ -18,28 +21,56 @@ class Employee
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max="255")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max="255")
+     * @Assert\Email()
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max="255")
      */
     private $phone;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max="255")
+     * @Assert\Url()
      */
     private $web;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(max="255")
      */
     private $room;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Role", inversedBy="employees")
+     */
+    private $roles;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Account", mappedBy="employee")
+     */
+    private $accounts;
+
+    public function __construct()
+    {
+        $this->accounts = new ArrayCollection();
+        $this->roles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -104,5 +135,61 @@ class Employee
         $this->room = $room;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Role[]
+     */
+    public function getRoles(): Collection {
+        return $this->roles;
+    }
+
+    public function addRole(Role $role): self {
+        if ($this->roles->contains($role)) {
+            return $this;
+        }
+
+        $this->roles[] = $role;
+
+        return $this;
+    }
+
+    public function removeRole(Role $role): self {
+        if (!$this->roles->contains($role)) {
+            return $this;
+        }
+
+        $this->roles->remove($role);
+
+        return $this;
+    }
+
+    public function addAccount(Account $account): self {
+        if ($this->accounts->contains($account)) {
+            return $this;
+        }
+
+        $this->accounts[] = $account;
+        $account->setEmployee($this);
+
+        return $this;
+    }
+
+    public function removeAccount(Account $account): self {
+        if (!$this->accounts->contains($account)) {
+            return $this;
+        }
+
+        $this->accounts->remove($account);
+        $account->setEmployee(null);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Account[]
+     */
+    public function getAccounts(): Collection {
+        return $this->accounts;
     }
 }

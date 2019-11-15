@@ -19,12 +19,6 @@ class AccountRepository extends ServiceEntityRepository
         parent::__construct($registry, Account::class);
     }
 
-    public function getAccountsForUser(int $id) {
-        return $this->createQueryBuilder('a')->where('a.employee_id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()->getResult();
-    }
-
     // /**
     //  * @return Account[] Returns an array of Account objects
     //  */

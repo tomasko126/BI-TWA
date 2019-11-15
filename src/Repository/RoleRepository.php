@@ -19,12 +19,6 @@ class RoleRepository extends ServiceEntityRepository
         parent::__construct($registry, Role::class);
     }
 
-    public function getRolesForEmployee(int $id) {
-        return $this->createQueryBuilder('r')->where('r.employee_id = :id')
-            ->setParameter('id', $id)
-            ->getQuery()->getResult();
-    }
-
     // /**
     //  * @return Role[] Returns an array of Role objects
     //  */

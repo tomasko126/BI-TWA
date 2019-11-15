@@ -5,39 +5,40 @@
 {% endblock %}
 
 {% block headscripts %}
-    <link rel="stylesheet" href="../css/general.css">
+    <link rel="stylesheet" href="/css/general.css">
 {% endblock %}
 
 {% block content %}
-    <main id="content">
-
-        <h2>Moje účty</h2>
-        <div class="uk-overflow-auto">
-            <table class="uk-table uk-table-small uk-table-divider">
-                <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Heslo</th>
-                    <th>Platnosť</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for account in accounts %}
+    <main id="content" class="uk-container">
+        <h2 class="uk-text-center uk-text-large">Moje účty</h2>
+        <article id="accounts">
+            <div class="uk-overflow-auto">
+                <table class="uk-table uk-table-small uk-table-divider uk-table-striped">
+                    <thead>
                     <tr>
-                        <td>{{ account.getUsername() }}</td>
-                        <td>{{ account.getPassword() }}</td>
-                        {% if account.getValidTo() is null %}
-                            <td>Platnosť nebola nastavená</td>
-                        {% else %}
-                            <td>{{ account.getValidTo() }}</td>
-                        {% endif %}
-                        <td>
-                            <button class="uk-button uk-button-default uk-button-small">Upraviť</button>
-                        </td>
+                        <th>Username</th>
+                        <th>Heslo</th>
+                        <th>Platnosť</th>
                     </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                    {% for account in employee.getAccounts() %}
+                        <tr>
+                            <td>{{ account.getUsername() }}</td>
+                            <td>{{ account.getPassword() }}</td>
+                            {% if account.getValidTo() is null %}
+                                <td>Platnosť nebola nastavená</td>
+                            {% else %}
+                                <td>{{ account.getValidTo().format('d.m.Y H:i') }}</td>
+                            {% endif %}
+                            <td>
+                                <a href="{{ path('accountedit', { 'id': account.getId() }) }}" class="uk-button uk-button-default uk-button-small">Upraviť</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </article>
     </main>
 {% endblock %}

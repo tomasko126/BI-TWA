@@ -5,12 +5,12 @@
 {% endblock %}
 
 {% block headscripts %}
-    <link rel="stylesheet" href="../css/general.css">
-    <link rel="stylesheet" href="../css/detail.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/detail.css">
 {% endblock %}
 
 {% block content %}
-    <main id="content">
+    <main id="content" class="uk-container">
         <article id="profile-card">
             <article class="uk-card uk-card-default uk-card-small uk-width-large">
 
@@ -21,7 +21,7 @@
                         </div>
                         <div class="uk-width-expand">
                             <h3 id="name" class="uk-card-title uk-margin-remove-top">
-                                <a href="{{ path('detailaction', { 'id': employee.getId() }) }}">{{ employee.getName() }}</a>
+                                <a href="{{ path('employee', { 'id': employee.getId() }) }}">{{ employee.getName() }}</a>
                             </h3>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                     <p class="employee-roles uk-margin-remove-bottom">
                         Funkcie:
                         <ul class="uk-margin-remove">
-                            {% for role in roles %}
+                            {% for role in employee.getRoles() %}
                                 <li>{{ role.getTitle() }}</li>
                             {% endfor %}
                         </ul>
@@ -54,7 +54,7 @@
                 </section>
 
                 <section class="uk-card-footer">
-                    <a href="{{ path('editaction', { 'id': employee.getId() }) }}" class="uk-button uk-button-text">Upraviť</a>
+                    <a href="{{ path('employeeedit', { 'id': employee.getId() }) }}" class="uk-button uk-button-text">Upraviť</a>
                 </section>
             </article>
         </article>
