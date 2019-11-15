@@ -1,0 +1,13 @@
+#profile-card {
+    margin: 15px auto;
+    display: grid;
+    justify-content: center;
+}
+
+#name {
+    margin-left: 25px;
+}
+
+a[href^="tel"]:before {
+    content: '+420 ';
+}

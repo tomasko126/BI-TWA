@@ -1,0 +1,66 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Prehľad zamestnancov
+{% endblock %}
+
+{% block headscripts %}
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/list.css">
+{% endblock %}
+
+{% block content %}
+    <main id="content" class="uk-container">
+        <form id="searchform" class="uk-search uk-search-default uk-width-large uk-margin-top uk-margin-bottom" action="{{ path('employees') }}">
+            <input type="search" class="uk-search-input" name="name" placeholder="Zadajte meno zamestnanca">
+            <button type="submit" class="uk-search-icon-flip" uk-search-icon></button>
+        </form>
+
+        <article id="employees" class="uk-grid-medium uk-grid uk-flex uk-flex-around" uk-grid>
+            {% for employee in employees %}
+                <article class="uk-card uk-card-default uk-card-small uk-width-medium uk-card-hover uk-padding-remove">
+                    <section class="uk-card-header">
+                        <div class="uk-grid-small uk-flex-middle" uk-grid>
+                            <div class="uk-width-auto">
+                                <img class="uk-border-circle" width="40" height="40" src="../img/profile-picture-placeholder.png">
+                            </div>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title uk-margin-remove-top">
+                                    <a href="{{ path('employee', { 'id': employee.getId() }) }}">{{ employee.getName() }}</a></h3>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="uk-card-body">
+                        <p class="employee-room">
+                            Miestnosť: {{ employee.getRoom() }}
+                        </p>
+                        <p class="employee-roles uk-margin-remove-bottom">
+                            Funkcie:
+                        <ul class="uk-margin-remove">
+                            {% for role in employee.getRoles() %}
+                                <li>{{ role.getTitle() }}</li>
+                            {% endfor %}
+                        </ul>
+                        </p>
+                        <p class="employee-email">
+                            E-mail:
+                            <a href="mailto:{{ employee.getEmail() }}">{{ employee.getEmail() }}</a>
+                        </p>
+                    </section>
+
+                    <section class="uk-card-footer">
+                        <a href="{{ path('employeeedit', { 'id': employee.getId() }) }}" class="uk-button uk-button-text">Upraviť</a>
+                    </section>
+                </article>
+            {% endfor %}
+
+            {% if employees is empty %}
+                <div class="uk-alert-warning" uk-alert>
+                    <p>Neboli nájdené žiadne osoby</p>
+                </div>
+            {% endif %}
+        </article>
+    </main>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Detail zamestnanca - {{ employee.getName() }}
+{% endblock %}
+
+{% block headscripts %}
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/detail.css">
+{% endblock %}
+
+{% block content %}
+    <main id="content" class="uk-container">
+        <article id="profile-card">
+            <article class="uk-card uk-card-default uk-card-small uk-width-large">
+
+                <section class="uk-card-header">
+                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-border-circle" width="80" height="80" src="../img/profile-picture-placeholder.png">
+                        </div>
+                        <div class="uk-width-expand">
+                            <h3 id="name" class="uk-card-title uk-margin-remove-top">
+                                <a href="{{ path('employee', { 'id': employee.getId() }) }}">{{ employee.getName() }}</a>
+                            </h3>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="uk-card-body">
+                    <p class="employee-room">
+                        Miestnosť: {{ employee.getRoom() }}
+                    </p>
+                    <p class="employee-roles uk-margin-remove-bottom">
+                        Funkcie:
+                        <ul class="uk-margin-remove">
+                            {% for role in employee.getRoles() %}
+                                <li>{{ role.getTitle() }}</li>
+                            {% endfor %}
+                        </ul>
+                    </p>
+                    <p class="employee-email">
+                        Email:
+                        <a href="mailto:{{ employee.getEmail() }}">{{ employee.getEmail() }}</a>
+                    </p>
+                    <p class="employee-phone">
+                        Mobile number:
+                        <a href="tel:{{ employee.getPhone() }}">{{ employee.getPhone() }}</a>
+                    </p>
+                    <p class="employee-web">
+                        Website:
+                        <a href="{{ employee.getWeb() }}">{{ employee.getWeb() }}</a>
+                    </p>
+                </section>
+
+                <section class="uk-card-footer">
+                    <a href="{{ path('employeeedit', { 'id': employee.getId() }) }}" class="uk-button uk-button-text">Upraviť</a>
+                </section>
+            </article>
+        </article>
+    </main>
+{% endblock %}

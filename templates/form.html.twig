@@ -1,0 +1,20 @@
+{% block form_row %}
+    <div class="uk-margin-small">
+        {{ form_label(form) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+    </div>
+{% endblock %}
+
+{% block form_errors %}
+    {% spaceless %}
+        <ul class="uk-list uk-margin-remove">
+            {% for error in errors %}
+                <li class="uk-margin-bottom">
+                    <span class="uk-label uk-label-danger">Error</span>
+                    <span class="uk-text-small uk-text-danger"> {{ error.message }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endspaceless %}
+{% endblock %}

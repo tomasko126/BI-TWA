@@ -1,0 +1,58 @@
+html {
+    background-color: whitesmoke;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    border-bottom: 1px solid #c3c2c2;
+}
+
+h1, h2, h3 {
+    margin: 15px 0;
+}
+
+h1 {
+    font-size: 1.75em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+h3 {
+    font-size: 1.25em;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:active {
+    color: #004bbd;
+}
+
+a:focus {
+    color: #004bbd;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #609;
+}
+
+#searchform {
+    margin: 0 auto;
+    display: flex;
+    background-color: white;
+}
+
+::selection {
+    background-color: #d0c9c9;
+}
