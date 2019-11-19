@@ -2,33 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b018fa07-0f0d-410c-9126-d719d95491ff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Form/AccountType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Form/EmployeeType.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/account_edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/employee_create.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/employee_edit.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/employees.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/BI-TWA.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BI-TWA.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/twig.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/twig.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/general.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/general.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/search.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/list.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/EmployeeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EmployeeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Employee.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Employee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Role.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20191026160711.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/AccountRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/AccountRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/RoleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/RoleRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/accounts.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/detail.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employee.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/account_create.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/search.html.twig" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,6 +52,13 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
         <item name="account: table" type="3d80ac25:SqliteImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="data" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+        <item name="example: table" type="3d80ac25:SqliteImplModel$Table" />
       </path>
     </expand>
     <select />

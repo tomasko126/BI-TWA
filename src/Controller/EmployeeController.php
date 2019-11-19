@@ -48,8 +48,6 @@ class EmployeeController extends AbstractController {
             $em->persist($employee);
             $em->flush();
 
-            $this->addFlash('success', 'Údaje boli uložené.');
-
             return $this->redirectToRoute('employees');
         }
 
@@ -103,8 +101,6 @@ class EmployeeController extends AbstractController {
             $em = $this->getDoctrine()->getManager();
             $em->persist($employee);
             $em->flush();
-
-            $this->addFlash('success', 'Údaje boli uložené.');
 
             return $this->redirectToRoute('employee', [
                 'id' => $employee->getId(),
@@ -161,8 +157,6 @@ class EmployeeController extends AbstractController {
             $em->persist($account);
             $em->flush();
 
-            $this->addFlash('success', 'Údaje boli uložené.');
-
             return $this->redirectToRoute('employees');
         }
 
@@ -195,9 +189,7 @@ class EmployeeController extends AbstractController {
             $em = $this->getDoctrine()->getManager();
             $em->persist($account);
             $em->flush();
-
-            $this->addFlash('success', 'Údaje boli uložené.');
-
+            
             return $this->redirectToRoute('accounts', ['employee' => $id]);
         }
 
