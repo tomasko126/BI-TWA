@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AccountRepository")
  */
-class Account
+class Account implements AdvancedUserInterface
 {
     /**
      * @ORM\Id()
@@ -39,6 +40,7 @@ class Account
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Employee", inversedBy="accounts")
+     * @var Employee
      */
     private $employee;
 
@@ -93,5 +95,61 @@ class Account
         $this->employee = $employee;
 
         return $this;
+    }
+
+    // We do not enforce using salt while hashing passwords
+    public function getSalt() {
+        return null;
+    }
+
+    // This method should erase sensitive info from the account,
+    // but we do not store any sensitive info such as password
+    // in plaintext
+    public function eraseCredentials() {
+        return null;
+    }
+
+    // Return user roles
+    public function getRoles() {
+        $roles = $this->employee->getRoles()->getValues();
+
+        $roleNames = [];
+
+        /* @var Role $role */
+        foreach ($roles as $role) {
+            if ($role->getIsVisible()) {
+                continue;
+            }
+
+            $roleNames[] = $role->getTitle();
+        }
+
+        return $roleNames;
+    }
+
+    public function isAccountNonExpired()
+    {
+        $date = new \DateTime();
+
+        if ($this->getValidTo() !== null && $this->getValidTo() < $date) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return true;
     }
 }

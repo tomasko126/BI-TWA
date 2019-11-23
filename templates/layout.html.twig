@@ -5,7 +5,7 @@
     <title>{% block title %} {% endblock %}</title>
 
     <!-- UI Kit -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/css/uikit.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/css/uikit.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.2.2/dist/js/uikit-icons.min.js"></script>
 
@@ -15,44 +15,54 @@
 <body>
 
 <header>
-    <nav class="uk-container uk-navbar">
+    <nav class="uk-container uk-navbar" uk-navbar="mode: click">
         <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
                 <li class="uk-active">
-                    <a href="/" >Evidencia zamestnancov</a>
+                    <a href="/">Evidencia zamestnancov</a>
                 </li>
             </ul>
         </div>
         <div class="uk-navbar-right">
-            <ul class="uk-navbar-nav uk-visible@s">
+            <ul class="uk-navbar-nav">
                 <li>
-                    <!-- todo change the ID to the logged in user -->
-                    <a class="uk-text-large" href="/accounts/?employee=1">Účty</a>
-                </li>
-                <li>
-                    <a class="uk-text-large" href="">Funkcie</a>
+                    <a class="uk-navbar-toggle" uk-navbar-toggle-icon href="#"></a>
+                    <div class="uk-navbar-dropdown">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <li>Prihlásený ako: {{ app.user.username }}</li>
+                                <hr>
+                                <li>
+                                    <a href="{{ path('accounts', { employee: app.user.id }) }}">Moje účty</a>
+                                </li>
+                                <hr>
+                            {% endif %}
+                            <li>
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    <a href="{{ path('logout') }}">Odhlásiť sa</a>
+                                {% else %}
+                                    <a href="{{ path('login') }}">Prihlásiť sa</a>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
-            <a href="#" class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-icon uk-toggle="target: #sidenav"></a>
         </div>
     </nav>
 </header>
 
-<div id="sidenav" uk-offcanvas="flip: true" class="uk-offcanvas">
-    <div class="uk-offcanvas-bar">
-        <ul class="uk-nav">
-            <li>
-                <a class="uk-text-large" href="/accounts/?employee=1">Účty</a>
-            </li>
-            <li>
-                <a class="uk-text-large" href="">Funkcie</a>
-            </li>
-        </ul>
-    </div>
-</div>
-
 {% block content %}
-
 {% endblock %}
+
+{# Read and display flash messages #}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <script>
+            UIkit.notification({message: '{{ message }}', status: 'success'})
+        </script>
+    {% endfor %}
+{% endfor %}
+
 </body>
 </html>

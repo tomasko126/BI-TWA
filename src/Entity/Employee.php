@@ -164,6 +164,13 @@ class Employee
         return $this;
     }
 
+    /**
+     * @return Collection|Account[]
+     */
+    public function getAccounts(): Collection {
+        return $this->accounts;
+    }
+
     public function addAccount(Account $account): self {
         if ($this->accounts->contains($account)) {
             return $this;
@@ -184,12 +191,5 @@ class Employee
         $account->setEmployee(null);
 
         return $this;
-    }
-
-    /**
-     * @return Collection|Account[]
-     */
-    public function getAccounts(): Collection {
-        return $this->accounts;
     }
 }

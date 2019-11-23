@@ -16,13 +16,15 @@
             <button type="submit" class="uk-search-icon-flip" uk-search-icon></button>
         </form>
 
-        <article id="employees" class="uk-grid-medium uk-grid uk-flex uk-flex-around uk-margin-remove-left" uk-grid>
+        <article id="employees" class="uk-grid-medium uk-grid uk-flex uk-flex-center uk-margin-remove-left" uk-grid>
             {% for employee in employees %}
                 <article class="uk-card uk-card-default uk-card-small uk-width-medium uk-card-hover uk-padding-remove">
                     <section class="uk-card-header">
                         <div class="uk-grid-small uk-flex-middle" uk-grid>
                             <div class="uk-width-auto">
-                                <img class="uk-border-circle" width="40" height="40" src="../img/profile-picture-placeholder.png">
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    <img class="uk-border-circle" width="40" height="40" src="../img/profile-picture-placeholder.png">
+                                {% endif %}
                             </div>
                             <div class="uk-width-expand">
                                 <h3 class="uk-card-title uk-margin-remove-top">
@@ -39,7 +41,13 @@
                             Funkcie:
                         <ul class="uk-margin-remove">
                             {% for role in employee.getRoles() %}
-                                <li>{{ role.getTitle() }}</li>
+                                {% if role.getTitle() starts with 'ROLE' %}
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <li>{{ role.getTitle() }}</li>
+                                    {% endif %}
+                                {% else %}
+                                    <li>{{ role.getTitle() }}</li>
+                                {% endif %}
                             {% endfor %}
                         </ul>
                         </p>
@@ -49,9 +57,11 @@
                         </p>
                     </section>
 
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <section class="uk-card-footer">
                         <a href="{{ path('employeeedit', { 'id': employee.getId() }) }}" class="uk-button uk-button-text">Upraviť</a>
                     </section>
+                    {% endif %}
                 </article>
             {% endfor %}
 

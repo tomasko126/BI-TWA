@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block content %}
-    <main id="content" class="uk-container">
+    <main id="content" class="uk-container uk-flex uk-flex-center">
         <article class="uk-card uk-card-default uk-card-small uk-width-large uk-margin-top">
 
             <section class="uk-card-header">
@@ -35,7 +35,13 @@
                     Funkcie:
                 <ul class="uk-margin-remove">
                     {% for role in employee.getRoles() %}
-                        <li>{{ role.getTitle() }}</li>
+                        {% if role.getTitle() starts with 'ROLE' %}
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li>{{ role.getTitle() }}</li>
+                            {% endif %}
+                        {% else %}
+                            <li>{{ role.getTitle() }}</li>
+                        {% endif %}
                     {% endfor %}
                 </ul>
                 </p>

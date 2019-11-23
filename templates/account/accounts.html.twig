@@ -22,10 +22,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {% for account in employee.getAccounts() %}
+                    {% for account in accounts %}
                         <tr>
                             <td>{{ account.getUsername() }}</td>
-                            <td>{{ account.getPassword() }}</td>
+                            <td>******</td>
                             {% if account.getValidTo() is null %}
                                 <td>Platnosť nebola nastavená</td>
                             {% else %}
