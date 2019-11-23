@@ -113,7 +113,8 @@ class Account implements AdvancedUserInterface
     public function getRoles() {
         $roles = $this->employee->getRoles()->getValues();
 
-        $roleNames = [];
+        // Logged-in user has this role automatically
+        $roleNames = ['ROLE_USER'];
 
         /* @var Role $role */
         foreach ($roles as $role) {
@@ -122,6 +123,10 @@ class Account implements AdvancedUserInterface
             }
 
             $roleNames[] = $role->getTitle();
+
+            if ($role->getTitle() === 'admin') {
+                $roleNames[] = 'ROLE_ADMIN';
+            }
         }
 
         return $roleNames;

@@ -2,8 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Account;
 use App\Entity\Employee;
 use App\Entity\Role;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -13,9 +15,17 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 class EmployeeType extends AbstractType
 {
+    /** @var AuthorizationCheckerInterface  */
+    private $auth;
+
+    public function __construct(AuthorizationCheckerInterface $auth) {
+        $this->auth = $auth;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -35,6 +45,13 @@ class EmployeeType extends AbstractType
                 'multiple' => true,
                 'label_attr' => ['class' => 'uk-form-label'],
                 'attr' => ['class' => 'uk-select uk-form-width-large uk-form-small'],
+                'query_builder' => function (EntityRepository $er) {
+                    if ($this->auth->isGranted('ROLE_ADMIN')) {
+                        return $er->createQueryBuilder('role');
+                    } else {
+                        return $er->createQueryBuilder('role')->where('role.isVisible = true');
+                    }
+                },
             ])
             ->add('phone', TelType::class, [
                 'attr' => ['class' => 'uk-input uk-form-width-large uk-form-small'],

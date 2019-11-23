@@ -104,8 +104,6 @@ class EmployeeController extends AbstractController {
             return $this->render( 'security/403.html.twig', [], (new Response())->setStatusCode( 403 ));
         }
 
-        //$this->denyAccessUnlessGranted('edit', $employee);
-
         $form = $this->createForm(EmployeeType::class, $employee);
 
         $form->handleRequest($request);

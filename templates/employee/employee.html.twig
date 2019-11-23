@@ -35,13 +35,7 @@
                     Funkcie:
                 <ul class="uk-margin-remove">
                     {% for role in employee.getRoles() %}
-                        {% if role.getTitle() starts with 'ROLE' %}
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <li>{{ role.getTitle() }}</li>
-                            {% endif %}
-                        {% else %}
-                            <li>{{ role.getTitle() }}</li>
-                        {% endif %}
+                        <li>{{ role.getTitle() }}</li>
                     {% endfor %}
                 </ul>
                 </p>
