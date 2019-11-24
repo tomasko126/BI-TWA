@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b018fa07-0f0d-410c-9126-d719d95491ff" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/EmployeeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/EmployeeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/EmployeeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/EmployeeType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/employee/employee.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employee/employee.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/employee/employees.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/employee/employees.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -290,7 +287,8 @@
       <workItem from="1573827435933" duration="10425000" />
       <workItem from="1574296727043" duration="238000" />
       <workItem from="1574335245754" duration="1218000" />
-      <workItem from="1574345170412" duration="36960000" />
+      <workItem from="1574345170412" duration="37687000" />
+      <workItem from="1574557852755" duration="508000" />
     </task>
     <servers />
   </component>
