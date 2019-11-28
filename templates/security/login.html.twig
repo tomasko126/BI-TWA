@@ -1,0 +1,49 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Prihlásenie
+{% endblock %}
+
+{% block headscripts %}
+    <link rel="stylesheet" href="/css/general.css">
+{% endblock %}
+
+{% block content %}
+    <main id="content" class="uk-container uk-flex uk-flex-center">
+        <article id="loginForm" class="uk-card uk-card-default uk-card-small uk-width-large uk-margin-top">
+            <section class="uk-card-header uk-flex uk-flex-center">
+                <h3 class="uk-card-title uk-margin-remove-top">
+                    Vitajte späť!
+                </h3>
+            </section>
+            <section class="uk-card-body">
+                <form method="post">
+                    {% if error %}
+                        <div class="uk-margin-small uk-text-danger">
+                            <span class="uk-label uk-label-danger">Chyba</span>
+                            <span>{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+                        </div>
+                    {% endif %}
+
+                    <div class="uk-margin-small uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: user"></span>
+                        <input type="text" id="username" name="username" required="required"
+                               class="uk-input uk-form-width-large uk-form-large" value="{{ last_username }}">
+                    </div>
+
+                    <div class="uk-margin-small uk-inline">
+                        <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                        <input type="password" id="password" name="password" required="required"
+                               class="uk-input uk-form-width-large uk-form-large">
+                    </div>
+
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+
+                    <button type="submit" class="uk-button uk-button-primary uk-button-large uk-width-1-1 uk-margin-top">Prihlásiť sa</button>
+                </form>
+            </section>
+        </article>
+    </main>
+{% endblock %}

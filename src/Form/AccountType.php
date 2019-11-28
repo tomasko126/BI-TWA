@@ -38,12 +38,12 @@ class AccountType extends AbstractType
                 'format' => 'd.MM.y H:mm'
             ])
             ->add('employee', EntityType::class, [
-                'label' => 'ID zamestnanca:',
+                'label' => 'Zamestnanec:',
                 'label_attr' => ['class' => 'uk-form-label'],
                 'attr' => ['class' => 'uk-select uk-form-width-large uk-form-small'],
                 'class' => Employee::class,
                 'choice_label' => function($employee){
-                    return $employee->getId();
+                    return $employee->getName() . ' - ' . $employee->getEmail();
                 }
             ])->add('save', SubmitType::class, [
                 'attr' => ['class' => 'uk-button uk-button-default uk-button-small'],

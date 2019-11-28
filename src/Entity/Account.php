@@ -3,12 +3,18 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AccountRepository")
+ * @UniqueEntity("username")
+ * @ExclusionPolicy("none")
  */
-class Account
+class Account implements AdvancedUserInterface
 {
     /**
      * @ORM\Id()
@@ -28,6 +34,7 @@ class Account
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(max="255")
+     * @Serializer\Exclude()
      */
     private $password;
 
@@ -39,6 +46,8 @@ class Account
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Employee", inversedBy="accounts")
+     * @var Employee
+     * @Serializer\Exclude()
      */
     private $employee;
 
@@ -93,5 +102,66 @@ class Account
         $this->employee = $employee;
 
         return $this;
+    }
+
+    // We do not enforce using salt while hashing passwords
+    public function getSalt() {
+        return null;
+    }
+
+    // This method should erase sensitive info from the account,
+    // but we do not store any sensitive info such as password
+    // in plaintext
+    public function eraseCredentials() {
+        return null;
+    }
+
+    // Return user roles
+    public function getRoles() {
+        $roles = $this->employee->getRoles()->getValues();
+
+        // Logged-in user has this role automatically
+        $roleNames = ['ROLE_USER'];
+
+        /* @var Role $role */
+        foreach ($roles as $role) {
+            if ($role->getIsVisible()) {
+                continue;
+            }
+
+            $roleNames[] = $role->getTitle();
+
+            if ($role->getTitle() === 'admin') {
+                $roleNames[] = 'ROLE_ADMIN';
+            }
+        }
+
+        return $roleNames;
+    }
+
+    public function isAccountNonExpired()
+    {
+        $date = new \DateTime();
+
+        if ($this->getValidTo() !== null && $this->getValidTo() < $date) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return true;
     }
 }

@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Role;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 
 /**
  * @method Role|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,32 +21,23 @@ class RoleRepository extends ServiceEntityRepository
         parent::__construct($registry, Role::class);
     }
 
-    // /**
-    //  * @return Role[] Returns an array of Role objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+    /**
+     * @param Role $role
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function save(Role $role) {
+        $this->getEntityManager()->persist($role);
+        $this->getEntityManager()->flush();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Role
-    {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+    /**
+     * @param Role $role
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function remove(Role $role) {
+        $this->getEntityManager()->persist($role);
+        $this->getEntityManager()->flush();
     }
-    */
 }
