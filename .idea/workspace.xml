@@ -2,34 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b018fa07-0f0d-410c-9126-d719d95491ff" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/config/packages/dev/jms_serializer.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/fos_rest.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/jms_serializer.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/prod/jms_serializer.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Rest/AccountRestController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/Rest/EmployeeRestController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/AccountService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Services/EmployeeService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/BI-TWA.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BI-TWA.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/framework.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/routing.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/routing.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes/annotations.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/annotations.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AccountController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Web/AccountController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/EmployeeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Web/EmployeeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Web/SecurityController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Account.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Employee.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Employee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Role.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Role.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/AccountRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/AccountRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/EmployeeRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/EmployeeRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/RoleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/RoleRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/layout.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/Rest/AccountRestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Rest/AccountRestController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -339,7 +313,7 @@
       <workItem from="1574345170412" duration="37687000" />
       <workItem from="1574557852755" duration="567000" />
       <workItem from="1574817615207" duration="1685000" />
-      <workItem from="1574862086612" duration="32685000" />
+      <workItem from="1574862086612" duration="33188000" />
     </task>
     <servers />
   </component>
@@ -358,5 +332,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Controller/Rest/AccountRestController.php</url>
+          <line>43</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
