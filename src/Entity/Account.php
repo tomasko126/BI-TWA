@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\ExclusionPolicy;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,6 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AccountRepository")
  * @UniqueEntity("username")
+ * @ExclusionPolicy("none")
  */
 class Account implements AdvancedUserInterface
 {
@@ -31,6 +34,7 @@ class Account implements AdvancedUserInterface
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(max="255")
+     * @Serializer\Exclude()
      */
     private $password;
 
@@ -43,6 +47,7 @@ class Account implements AdvancedUserInterface
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Employee", inversedBy="accounts")
      * @var Employee
+     * @Serializer\Exclude()
      */
     private $employee;
 

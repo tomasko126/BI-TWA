@@ -1,10 +1,16 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Web;
 
 use App\Entity\Account;
 use App\Entity\Employee;
 use App\Form\AccountType;
+use App\Services\AccountService;
+use App\Services\EmployeeService;
+use Doctrine\DBAL\DBALException;
+use Doctrine\ORM\EntityNotFoundException;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,6 +18,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AccountController extends AbstractController
 {
+
+    /** @var AccountService */
+    private $accountService;
+
+    /** @var EmployeeService */
+    private $employeeService;
+
+    public function __construct(AccountService $accountService, EmployeeService $employeeService) {
+        $this->accountService = $accountService;
+        $this->employeeService = $employeeService;
+    }
+
     /**
      * @Route("/accounts", name="accounts", requirements={"id":"\d+"})
      * @param Request $request
@@ -26,19 +44,18 @@ class AccountController extends AbstractController
             );
         }
 
-        $employee = $this->getDoctrine()
-            ->getRepository(Employee::class)
-            ->find($employeeId);
-
-        if (!$employee) {
+        try {
+            $employee = $this->employeeService->getEmployee($employeeId);
+        } catch (EntityNotFoundException $e) {
             throw $this->createNotFoundException(
                 'No employee found for id ' . $employeeId
             );
         }
 
-        // Get the employee's any account in order to met the security condition
-        $account = null;
-        if (empty($employee->getAccounts()->getValues())) {
+        // Get the employee's any account in order to meet the security condition
+        $accounts = $employee->getAccounts()->getValues();
+
+        if (empty($accounts)) {
             $account = new Account();
             $account->setEmployee($employee);
         } else {
@@ -50,8 +67,7 @@ class AccountController extends AbstractController
         }
 
         // If user is not admin, he can't see his permanent accounts
-        $isAdmin = in_array('ROLE_ADMIN', $this->getUser()->getRoles());
-        $accounts = $employee->getAccounts()->getValues();
+        $isAdmin = $this->isGranted('ROLE_ADMIN');
 
         if (!$isAdmin) {
             $i = 0;
@@ -85,14 +101,16 @@ class AccountController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             // Hash password
-            $account = $form->getData();
-            $account->setPassword(password_hash($form["password"]->getData(), PASSWORD_BCRYPT));
+            $formData = $form->getData();
+            $formData->setPassword(password_hash($form["password"]->getData(), PASSWORD_BCRYPT));
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($account);
-            $em->flush();
+            try {
+                $this->accountService->createAccount($formData);
 
-            $this->addFlash('notice','Údaje boli úspešne uložené');
+                $this->addFlash('notice','Údaje boli úspešne uložené');
+            } catch (OptimisticLockException | ORMException | DBALException $e) {
+                $this->addFlash('error','Údaje neboli uložené!');
+            }
 
             return $this->redirectToRoute('employees');
         }
@@ -110,12 +128,10 @@ class AccountController extends AbstractController
      * @return Response
      */
     public function accountEdit(int $id, Request $request) {
-        $account = $this->getDoctrine()->getRepository(Account::class)->find($id);
-
-        if (!$account) {
-            throw $this->createNotFoundException(
-                'No account found for id ' . $id
-            );
+        try {
+            $account = $this->accountService->getAccount($id);
+        } catch (EntityNotFoundException $e) {
+            throw $this->createNotFoundException('No account found for id ' . $id);
         }
 
         if (!$this->isGranted('edit', $account)) {
@@ -128,14 +144,16 @@ class AccountController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Hash password
-            $account = $form->getData();
-            $account->setPassword(password_hash($form["password"]->getData(), PASSWORD_BCRYPT));
+            $formData = $form->getData();
+            $formData->setPassword(password_hash($form["password"]->getData(), PASSWORD_BCRYPT));
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($account);
-            $em->flush();
+            try {
+                $this->accountService->editAccount($id, $formData);
 
-            $this->addFlash('notice','Údaje boli úspešne uložené');
+                $this->addFlash('notice','Údaje boli úspešne uložené');
+            } catch (EntityNotFoundException | OptimisticLockException | ORMException | DBALException $e) {
+                $this->addFlash('error','Údaje neboli uložené!');
+            }
 
             return $this->redirectToRoute('accounts', ['employee' => $id]);
         }

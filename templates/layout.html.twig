@@ -33,7 +33,8 @@
                                 <li>Prihlásený ako: {{ app.user.username }}</li>
                                 <hr>
                                 <li>
-                                    <a href="{{ path('accounts', { employee: app.user.id }) }}">Moje účty</a>
+                                    <a href="{{ path('accounts', { employee: app.user.getEmployee().getId() }) }}">Moje
+                                        účty</a>
                                 </li>
                                 <hr>
                             {% endif %}
@@ -55,14 +56,16 @@
 {% block content %}
 {% endblock %}
 
-{# Read and display flash messages #}
-{% for label, messages in app.flashes %}
-    {% for message in messages %}
-        <script>
-            UIkit.notification({message: '{{ message }}', status: 'success'})
-        </script>
-    {% endfor %}
+{% for message in app.flashes('notice') %}
+    <script>
+        UIkit.notification({message: '{{ message }}', status: 'success'});
+    </script>
 {% endfor %}
 
+{% for message in app.flashes('error') %}
+    <script>
+        UIkit.notification({message: '{{ message }}', status: 'danger'});
+    </script>
+{% endfor %}
 </body>
 </html>

@@ -1,15 +1,27 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Web;
 
 use App\Entity\Employee;
 use App\Form\EmployeeType;
+use App\Services\EmployeeService;
+use Doctrine\DBAL\DBALException;
+use Doctrine\ORM\EntityNotFoundException;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class EmployeeController extends AbstractController {
+
+    /** @var EmployeeService */
+    private $employeeService;
+
+    public function __construct(EmployeeService $employeeService) {
+        $this->employeeService = $employeeService;
+    }
 
     /**
      * @Route("/", name="employees")
@@ -20,9 +32,9 @@ class EmployeeController extends AbstractController {
         $employeeName = $request->query->get('name');
 
         if (empty($employeeName)) {
-            $employees = $this->getDoctrine()->getRepository(Employee::class)->findAll();
+            $employees = $this->employeeService->getEmployees();
         } else {
-            $employees = $this->getDoctrine()->getRepository(Employee::class)->findByName($employeeName);
+            $employees = $this->employeeService->getEmployeesByName($employeeName);
         }
 
         return $this->render( 'employee/employees.html.twig', ['employees' => $employees]);
@@ -45,11 +57,15 @@ class EmployeeController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($employee);
-            $em->flush();
+            $formData = $form->getData();
 
-            $this->addFlash('notice','Údaje boli úspešne uložené');
+            try {
+                $this->employeeService->createEmployee($formData);
+
+                $this->addFlash('notice', 'Údaje boli úspešne uložené');
+            } catch (OptimisticLockException | ORMException | DBALException $e) {
+                $this->addFlash('error', 'Údaje neboli uložené!');
+            }
 
             return $this->redirectToRoute('employees');
         }
@@ -66,14 +82,10 @@ class EmployeeController extends AbstractController {
      * @return Response
      */
     public function employee(int $id) {
-        $employee = $this->getDoctrine()
-            ->getRepository(Employee::class)
-            ->find($id);
-
-        if (!$employee) {
-            throw $this->createNotFoundException(
-                'No employee found for id '. $id
-            );
+        try {
+            $employee = $this->employeeService->getEmployee($id);
+        } catch (EntityNotFoundException $e) {
+            throw $this->createNotFoundException('No employee found for id ' . $id);
         }
 
         if (!$this->isGranted('view', $employee)) {
@@ -90,14 +102,10 @@ class EmployeeController extends AbstractController {
      * @return Response
      */
     public function employeeEdit(int $id, Request $request) {
-        $employee = $this->getDoctrine()
-            ->getRepository(Employee::class)
-            ->find($id);
-
-        if (!$employee) {
-            throw $this->createNotFoundException(
-                'No employee found for id ' . $id
-            );
+        try {
+            $employee = $this->employeeService->getEmployee($id);
+        } catch (EntityNotFoundException $e) {
+            throw $this->createNotFoundException('No employee found for id ' . $id);
         }
 
         if (!$this->isGranted('edit', $employee)) {
@@ -109,11 +117,15 @@ class EmployeeController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($employee);
-            $em->flush();
+            $formData = $form->getData();
 
-            $this->addFlash('notice','Údaje boli úspešne uložené');
+            try {
+                $this->employeeService->editEmployee($id, $formData);
+
+                $this->addFlash('notice','Údaje boli úspešne uložené.');
+            } catch (EntityNotFoundException | OptimisticLockException | ORMException | DBALException $e) {
+                $this->addFlash('error', 'Údaje neboli uložené!');
+            }
 
             return $this->redirectToRoute('employee', [
                 'id' => $employee->getId(),

@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Employee;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 
 /**
  * @method Employee|null find($id, $lockMode = null, $lockVersion = null)
@@ -26,32 +28,23 @@ class EmployeeRepository extends ServiceEntityRepository
              ->getQuery()->getResult();
     }
 
-    // /**
-    //  * @return Employee[] Returns an array of Employee objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+    /**
+     * @param Employee $employee
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function save(Employee $employee) {
+        $this->getEntityManager()->persist($employee);
+        $this->getEntityManager()->flush();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Employee
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+    /**
+     * @param Employee $employee
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function delete(Employee $employee) {
+        $this->getEntityManager()->remove($employee);
+        $this->getEntityManager()->flush();
     }
-    */
 }

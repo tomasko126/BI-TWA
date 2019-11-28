@@ -5,10 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation as Serializer;
+use JMS\Serializer\Annotation\ExclusionPolicy;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EmployeeRepository")
+ * @ExclusionPolicy("none")
  */
 class Employee
 {
@@ -58,11 +61,13 @@ class Employee
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Role", inversedBy="employees")
+     * @Serializer\Exclude()
      */
     private $roles;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Account", mappedBy="employee")
+     * @Serializer\Exclude()
      */
     private $accounts;
 
